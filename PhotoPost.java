@@ -1,111 +1,104 @@
-import java.util.*;
+import java.util.ArrayList;
 /**
- * Write a description of class PhotoPost here.
+ * Write a description of class MessagePost here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class PhotoPost
 {
-    private String userName;
-    private String fileName;
+    private String username;
+    private String filename;
     private String caption;
-    private long timeStamp;
+    private long timestamp;
     private int likes;
     private ArrayList<String> comments;
 
     /**
-     * Constructor for objects of class PhotoPost
+     * Constructor for objects of class MessagePost
      */
-    public PhotoPost(String author, String fileName, String caption)
+    public PhotoPost(String author, String filename, String caption)
     {
-        userName = author;
-        this.fileName = fileName;
+        this.username = author;
+        this.filename = filename;
+        this.timestamp = System.currentTimeMillis();
         this.caption = caption;
-        timeStamp = 0;
         likes = 0;
         comments = new ArrayList<>();
     }
 
     /**
-     * suma un like si se le da
+     * Metodo para dar un like.
      */
-    public void like()
-    {
+    public void like(){
         likes++;
     }
 
     /**
-     * quita un like del contador , si este es menos de 0 lo iguala a 0 
+     * Metodo para quitar un like en caso de que los haya.
      */
-    public void unLike()
-    {
-        if (likes < 0){
-            likes = 0 ;
-        }
-        else{
-            likes--;
-        }
+    public void unlike(){
+        if(likes != 0)
+            likes--; 
     }
 
     /**
-     * metodo para añadir comentarios
+     * Metodo para añadir un comentario al post
      */
-    public void addComment(String text)
-    {
+    public void addComment(String text){
         comments.add(text);
     }
 
-    public String getImageFile()
-    {
-        return fileName;
+    /**
+     * Meotdo que devuelve el nombre del archivo
+     */
+    public String getImageFile(){
+        return filename;
     }
 
-    public String getCaption()
-    {
+    /**
+     * Metodo que devuelve el mensaje del post
+     */
+    public String getCaption(){
         return caption;
     }
 
-    public long getTimeStamp()
-    {
-        return timeStamp;
+    /**
+     * Metodo que devuelve la estampa de tiempo en el momento de crear el post
+     */
+    public long getTimeStamp(){
+        return timestamp;
     }
 
     /**
-     * muestra todos los datos del post 
+     * Metodo que muestra toda la info del post
      */
-    public void display()
-    {
-        System.out.println("User: " + userName);
-        System.out.println("Archive: " + fileName);
-        System.out.println("caption: " + caption);
-        System.out.println("Submitted :"  + (timeString(System.currentTimeMillis())));
-        System.out.println(likes + " Likes");
-        if(comments.size() == 0)
-        {
-            System.out.println("No comments");            
-        }
+    public void display(){
+        String info = "";
+        long time = System.currentTimeMillis() - getTimeStamp();
+        info += username + "\n=====================\n" + "Posted: ";
+        info += timeString(time);
+        info += getImageFile() + "\n";
+        info += getCaption() + "\n";
+        info += "_____________________\nLikes: " + likes + "\n=====================\n\n";
+        if(comments.size() != 0)
+            for(int i=0; i<comments.size(); i++)
+                info += comments.get(i) + "\n_____________________\n";
         else
-        {
-            System.out.println("Comments : ");
-            int cont = 1;
-            for(String comment :comments){
-                System.out.println(cont  + ":" + comment);
-                cont++;
-            }
-        }
+            info += "Sin comentarios";
+        System.out.println(info);
     }
 
     /**
-     * metodo para trasformar el tiempo 
+     * Metodo para pasar el tiempo a minutos y segundos.
      */
-
-    public String timeString(long time)
-    {
-        long tiempoTrans = (time - timeStamp)/1000;
-        long min = (tiempoTrans /60);
-        long sec = tiempoTrans-(min*60);
-        return ("min " + min + "sec " +sec );
+    private String timeString(long time){
+        String info = "";
+        int sec =  (int)(time / 1000) % 60;
+        int min =  (int)((time / (1000*60)) % 60);
+        if(min > 0)
+            info += min + " Minutes, ";
+        info += sec + " Seconds\n";
+        return info;
     }
 }
-
