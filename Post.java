@@ -36,7 +36,7 @@ public class Post
         if(likes != 0)
             likes--; 
     }
-    
+
     /**
      * Metodo para añadir un comentario al post
      */
@@ -81,4 +81,11 @@ public class Post
         return info;
     }
 
+    /**
+     * returns the username for this post
+     */
+    public String getUsername()
+    {
+        return username;
+    }
 }
