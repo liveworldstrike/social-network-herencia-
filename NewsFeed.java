@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class NewsFeed
 {
-    private ArrayList<MessagePost> messages;
+    private ArrayList<Post> messages;
     private ArrayList<PhotoPost> photos;
     private ArrayList<JoinGroupPost> groups;
 
@@ -18,8 +18,6 @@ public class NewsFeed
     public NewsFeed()
     {
         messages = new ArrayList<>();
-        photos = new ArrayList<>();
-        groups = new ArrayList<>(); 
     }
 
     /**
@@ -27,40 +25,17 @@ public class NewsFeed
      * 
      * @message the message to introduce
      */
-    public void addMessagePost(MessagePost message)
+    public void addMessagePost(Post message)
     {
         messages.add(message);
-    }
-
-    /**
-     * Add a post with a image
-     * 
-     * @message the image to introduce
-     */
-    public void addPhotoPost(PhotoPost photo)
-    {
-        photos.add(photo);
-    }
-
-    /**
-     * Añade un post de grupo
-     */
-    public void addGroupPost(JoinGroupPost group){
-        groups.add(group);
-    }     
+    } 
 
     /**
      * Show the post
      */
     public void show(){
-        for(MessagePost message : messages){
+        for(Post message : messages){
             message.display();
-        }
-        for(PhotoPost photo : photos){
-            photo.display();
-        }
-        for(JoinGroupPost group : groups){
-            group.display();
         }
     }
 }
