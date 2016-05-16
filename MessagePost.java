@@ -5,7 +5,7 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MessagePost  extends Post
+public class MessagePost  extends Comments
 {
     private String message;
 
