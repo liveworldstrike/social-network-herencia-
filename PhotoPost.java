@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class PhotoPost extends Comments
+public class PhotoPost extends PostWithCommments
 {
 
     private String filename;

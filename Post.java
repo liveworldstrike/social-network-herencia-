@@ -10,7 +10,6 @@ public class Post
     private String username;
     private long timestamp;
     private int likes;
-    private ArrayList<String> comments;
     /**
      * Constructor for objects of class Post
      */
@@ -19,7 +18,6 @@ public class Post
         this.username = author;
         this.timestamp = System.currentTimeMillis();
         likes = 0;
-        comments = new ArrayList<>();
     }
 
     /**
@@ -35,13 +33,6 @@ public class Post
     public void unlike(){
         if(likes != 0)
             likes--; 
-    }
-
-    /**
-     * Metodo para añadir un comentario al post
-     */
-    public void addComment(String text){
-        comments.add(text);
     }
 
     /**

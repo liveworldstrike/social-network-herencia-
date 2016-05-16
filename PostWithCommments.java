@@ -5,14 +5,14 @@ import java.util.ArrayList;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Comments extends Post
+public class PostWithCommments extends Post
 {
     private ArrayList<String> comments;
 
     /**
      * Constructor for objects of class Comments
      */
-    public Comments(String author)
+    public PostWithCommments(String author)
     {
         super(author);
         comments = new ArrayList<>();
